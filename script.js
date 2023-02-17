@@ -4,11 +4,13 @@ const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const scoreContainerElement = document.getElementById("score-container");
 const answerButtonsElement = document.getElementById("answer-buttons");
+const scoreElement = document.getElementById("score");
 let shuffledQuestions, currentQuestionIndex;
 // JavaScript code for the countdown timer
 let timer = document.querySelector(".timer");
 let timeLeft = 60; // 1 minute in seconds
 let intervalId;
+let score = 0;
 
 startButton.addEventListener("click", () => {
   startGame();
@@ -71,6 +73,9 @@ function resetState() {
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct;
+  if (correct) {
+    score++;
+  }
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
     button.disabled = true;
@@ -85,10 +90,35 @@ function selectAnswer(e) {
     nextButton.classList.add("hide");
     scoreContainerElement.classList.remove("hide");
     questionContainerElement.classList.add("hide");
-
+    // Calculate and display the users score as X / Y and %
+    const totalQuestions = questions.length;
+    const scorePercentage = Math.round((score / totalQuestions) * 100);
+    scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
     clearStatusClass(document.body);
   }
 }
+
+// function selectAnswer(e) {
+//   const selectedButton = e.target;
+//   const correct = selectedButton.dataset.correct;
+//   setStatusClass(document.body, correct);
+//   Array.from(answerButtonsElement.children).forEach((button) => {
+//     button.disabled = true;
+//     setStatusClass(button, button.dataset.correct);
+//   });
+//   nextButton.classList.remove("hide");
+//   if (shuffledQuestions.length > currentQuestionIndex + 1) {
+//     nextButton.classList.remove("hide");
+//   } else {
+//     startButton.innerText = "Try Again?";
+//     startButton.classList.remove("hide");
+//     nextButton.classList.add("hide");
+//     scoreContainerElement.classList.remove("hide");
+//     questionContainerElement.classList.add("hide");
+
+//     clearStatusClass(document.body);
+//   }
+// }
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
