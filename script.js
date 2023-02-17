@@ -5,12 +5,32 @@ const questionElement = document.getElementById("question");
 const scoreContainerElement = document.getElementById("score-container");
 const answerButtonsElement = document.getElementById("answer-buttons");
 let shuffledQuestions, currentQuestionIndex;
+// JavaScript code for the countdown timer
+let timer = document.querySelector(".timer");
+let timeLeft = 60; // 1 minute in seconds
+let intervalId;
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", () => {
+  startGame();
+  clearInterval(intervalId); // clear the previous interval
+  intervalId = setInterval(updateTimer, 1000); // set a new interval
+});
+// startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
+
+function updateTimer() {
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+  timer.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  timeLeft--;
+  if (timeLeft < 0) {
+    clearInterval(intervalId);
+    alert("Time is up!");
+  }
+}
 
 function startGame() {
   startButton.classList.add("hide");
@@ -41,6 +61,7 @@ function showQuestion(question) {
 
 function resetState() {
   clearStatusClass(document.body);
+  scoreContainerElement.classList.add("hide");
   nextButton.classList.add("hide");
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
