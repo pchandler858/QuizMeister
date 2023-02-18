@@ -1,4 +1,5 @@
 const startButton = document.getElementById("start-btn");
+const warning = document.getElementById("warning");
 const nextButton = document.getElementById("next-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
@@ -13,12 +14,11 @@ let intervalId;
 let score = 0;
 
 startButton.addEventListener("click", () => {
-  timeLeft = 300;
+  timeLeft = 150; // Time limit: 10 seconds per question. 15 Questions.
   startGame();
   clearInterval(intervalId); // clear the previous interval
   intervalId = setInterval(updateTimer, 1000); // set a new interval
 });
-// startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
@@ -33,16 +33,20 @@ function updateTimer() {
     clearInterval(intervalId);
   } else if (timeLeft < -1) {
     clearInterval(intervalId);
-    endGame();
     timer.textContent = "0:00";
     alert(`Time's Up!!!!`);
+    setTimeout(() => {
+      endGame();
+    }, 300); // Delay endGame() by 0.3 seconds so that the score does not populate right away
   }
 }
 
 function startGame() {
   score = 0;
   startButton.classList.add("hide");
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  warning.classList.add("hide");
+  shuffledQuestions = questions.slice(0, 15).sort(() => Math.random() - 0.5);
+  // shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
@@ -84,7 +88,8 @@ function selectAnswer(e) {
   } else if (timeLeft > 10) {
     timeLeft -= 10; // Deduct 10 seconds for each wrong answer
   } else {
-    endGame();
+    timeLeft = 0;
+    // endGame();
   }
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
@@ -106,7 +111,7 @@ function endGame() {
   scoreContainerElement.classList.remove("hide");
   questionContainerElement.classList.add("hide");
   // Calculate and display the users score as X / Y and %
-  const totalQuestions = questions.length;
+  const totalQuestions = shuffledQuestions.length;
   const scorePercentage = Math.round((score / totalQuestions) * 100);
   scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
   clearStatusClass(document.body);

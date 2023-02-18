@@ -89,6 +89,7 @@ body.wrong {
 
 .controls {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -126,5 +127,3 @@ nav a {
   margin: 50px;
   font-size: 2rem;
 }
-
-
