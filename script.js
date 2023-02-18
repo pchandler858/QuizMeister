@@ -8,11 +8,12 @@ const scoreElement = document.getElementById("score");
 let shuffledQuestions, currentQuestionIndex;
 // JavaScript code for the countdown timer
 let timer = document.querySelector(".timer");
-let timeLeft = 300; // 10 seconds per question (30 questions)
+let timeLeft;
 let intervalId;
 let score = 0;
 
 startButton.addEventListener("click", () => {
+  timeLeft = 300;
   startGame();
   clearInterval(intervalId); // clear the previous interval
   intervalId = setInterval(updateTimer, 1000); // set a new interval
@@ -30,8 +31,11 @@ function updateTimer() {
   timeLeft--;
   if (currentQuestionIndex === questions.length - 1) {
     clearInterval(intervalId);
-  } else if (timeLeft < 0) {
+  } else if (timeLeft < -1) {
     clearInterval(intervalId);
+    endGame();
+    timer.textContent = "0:00";
+    alert(`Time's Up!!!!`);
   }
 }
 
@@ -77,8 +81,10 @@ function selectAnswer(e) {
   const correct = selectedButton.dataset.correct;
   if (correct) {
     score++;
-  } else {
+  } else if (timeLeft > 10) {
     timeLeft -= 10; // Deduct 10 seconds for each wrong answer
+  } else {
+    endGame();
   }
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
@@ -89,17 +95,31 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
-    startButton.innerText = "Try Again?";
-    startButton.classList.remove("hide");
-    nextButton.classList.add("hide");
-    scoreContainerElement.classList.remove("hide");
-    questionContainerElement.classList.add("hide");
+    // startButton.innerText = "Try Again?";
+    // startButton.classList.remove("hide");
+    // nextButton.classList.add("hide");
+    // scoreContainerElement.classList.remove("hide");
+    // questionContainerElement.classList.add("hide");
     // Calculate and display the users score as X / Y and %
-    const totalQuestions = questions.length;
-    const scorePercentage = Math.round((score / totalQuestions) * 100);
-    scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
-    clearStatusClass(document.body);
+    // const totalQuestions = questions.length;
+    // const scorePercentage = Math.round((score / totalQuestions) * 100);
+    // scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
+    // clearStatusClass(document.body);
+    endGame();
   }
+}
+
+function endGame() {
+  startButton.innerText = "Try Again?";
+  startButton.classList.remove("hide");
+  nextButton.classList.add("hide");
+  scoreContainerElement.classList.remove("hide");
+  questionContainerElement.classList.add("hide");
+  // Calculate and display the users score as X / Y and %
+  const totalQuestions = questions.length;
+  const scorePercentage = Math.round((score / totalQuestions) * 100);
+  scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
+  clearStatusClass(document.body);
 }
 
 function setStatusClass(element, correct) {
