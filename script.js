@@ -1,3 +1,4 @@
+const timer = document.getElementById("timer");
 const startButton = document.getElementById("start-btn");
 const warning = document.getElementById("warning");
 const nextButton = document.getElementById("next-btn");
@@ -8,7 +9,6 @@ const answerButtonsElement = document.getElementById("answer-buttons");
 const scoreElement = document.getElementById("score");
 let shuffledQuestions, currentQuestionIndex;
 // JavaScript code for the countdown timer
-let timer = document.querySelector(".timer");
 let timeLeft;
 let intervalId;
 let score = 0;
@@ -29,7 +29,7 @@ function updateTimer() {
   let seconds = timeLeft % 60;
   timer.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   timeLeft--;
-  if (currentQuestionIndex === questions.length - 1) {
+  if (currentQuestionIndex === shuffledQuestions.length - 1) {
     clearInterval(intervalId);
   } else if (timeLeft < -1) {
     clearInterval(intervalId);
@@ -45,8 +45,9 @@ function startGame() {
   score = 0;
   startButton.classList.add("hide");
   warning.classList.add("hide");
+  timer.classList.add("timer");
   shuffledQuestions = questions.slice(0, 15).sort(() => Math.random() - 0.5);
-  // shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
