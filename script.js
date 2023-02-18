@@ -95,16 +95,6 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
-    // startButton.innerText = "Try Again?";
-    // startButton.classList.remove("hide");
-    // nextButton.classList.add("hide");
-    // scoreContainerElement.classList.remove("hide");
-    // questionContainerElement.classList.add("hide");
-    // Calculate and display the users score as X / Y and %
-    // const totalQuestions = questions.length;
-    // const scorePercentage = Math.round((score / totalQuestions) * 100);
-    // scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
-    // clearStatusClass(document.body);
     endGame();
   }
 }

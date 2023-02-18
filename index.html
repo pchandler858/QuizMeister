@@ -23,16 +23,15 @@
       src="https://kit.fontawesome.com/86156a3e2b.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="script.js"></script>
     <title>QuizMeister</title>
   </head>
-
+  
   <body>
     <nav>
       <a href="#">View High Scores</a>
       <div id="timer" class="timer">00:00</div>
     </nav>
-
+    
     <div class="container">
       <div id="score-container" class="hide"">
         <div id="score" class="score">Score:</div>
@@ -51,5 +50,7 @@
         <button id="next-btn" class="next-btn btn hide">Next</button>
       </div>
     </div>
+    <script type="module" src="questions.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
