@@ -46,8 +46,7 @@ function startGame() {
   startButton.classList.add("hide");
   warning.classList.add("hide");
   timer.classList.add("timer");
-  shuffledQuestions = questions.slice(0, 15).sort(() => Math.random() - 0.5);
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  shuffledQuestions = questions.slice(0, 2).sort(() => Math.random() - 0.5); // Pick 15 random questions
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
@@ -114,7 +113,7 @@ function endGame() {
   // Calculate and display the users score as X / Y and %
   const totalQuestions = shuffledQuestions.length;
   const scorePercentage = Math.round((score / totalQuestions) * 100);
-  scoreElement.innerText = `Your score: ${score} / ${totalQuestions} (${scorePercentage}%)`;
+  scoreElement.innerText = `${score} / ${totalQuestions} (${scorePercentage}%)`;
   clearStatusClass(document.body);
 }
 
