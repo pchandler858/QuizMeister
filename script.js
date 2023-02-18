@@ -46,7 +46,7 @@ function startGame() {
   startButton.classList.add("hide");
   warning.classList.add("hide");
   timer.classList.add("timer");
-  shuffledQuestions = questions.slice(0, 2).sort(() => Math.random() - 0.5); // Pick 15 random questions
+  shuffledQuestions = questions.slice(0, 15).sort(() => Math.random() - 0.5); // Pick 15 random questions
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
@@ -89,18 +89,24 @@ function selectAnswer(e) {
     timeLeft -= 10; // Deduct 10 seconds for each wrong answer
   } else {
     timeLeft = 0;
-    // endGame();
   }
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
     button.disabled = true;
+    if (button === selectedButton) {
+      button.classList.add("selected-answer"); // add shadow to selected answer
+    }
+
     setStatusClass(button, button.dataset.correct);
   });
   nextButton.classList.remove("hide");
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
-    endGame();
+    setTimeout(() => {
+      alert(`Quiz completed! Click ok to check your score!`)
+      endGame();
+    }, 300);
   }
 }
 
