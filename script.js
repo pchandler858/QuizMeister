@@ -35,6 +35,7 @@ function updateTimer() {
 }
 
 function startGame() {
+  score = 0;
   startButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
