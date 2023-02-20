@@ -4,6 +4,7 @@ const warning = document.getElementById("warning");
 const nextButton = document.getElementById("next-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
+const countElement = document.getElementById("question-count");
 const scoreContainerElement = document.getElementById("score-container");
 const answerButtonsElement = document.getElementById("answer-buttons");
 const scoreElement = document.getElementById("score");
@@ -58,6 +59,7 @@ function setNextQuestion() {
 }
 
 function showQuestion(question) {
+  countElement.innerText = `Question ${currentQuestionIndex + 1} of 15`;
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
     const button = document.createElement("button");
@@ -104,7 +106,7 @@ function selectAnswer(e) {
     nextButton.classList.remove("hide");
   } else {
     setTimeout(() => {
-      alert(`Quiz completed! Click ok to check your score!`)
+      alert(`Quiz completed! Click ok to check your score!`);
       endGame();
     }, 300);
   }
