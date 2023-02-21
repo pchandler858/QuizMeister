@@ -50,6 +50,11 @@ body.wrong {
   left: 50%;
 }
 
+.question-count {
+  padding: 20px 0;
+  font-size: 0.75rem;
+}
+
 .btn-grid {
   display: grid;
   /* grid-template-columns: repeat(2, auto); */
