@@ -25,18 +25,31 @@
     ></script>
     <title>QuizMeister</title>
   </head>
-
   <body>
     <div class="container">
-      <div id="home" class="flex-center flex-column">
-        <h1>QuizMeister Web Development Quiz</h1>
-        <button id="takeQuiz-btn" class="home-btn btn">Take Quiz</button>
-        <button id="highScores-btn" class="home-btn btn">
-          View High Scores
-        </button>
+      <div id="end" class="flex-center flex-column">
+        <h1 id="finalScore"></h1>
+        <form action="">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Your Name"
+          />
+          <button
+            type="submit"
+            id="saveScore-btn"
+            class="btn home-btn"
+            onclick="saveHighScore(event)"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+        <button id="start-btn" class="home-btn btn">Try Again</button>
+        <button id="home" class="home-btn btn">Go Home</button>
       </div>
     </div>
-    <script src="script.js"></script>
     <script src="end.js"></script>
   </body>
 </html>

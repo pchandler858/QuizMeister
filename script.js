@@ -47,7 +47,7 @@ function startGame() {
   startButton.classList.add("hide");
   warning.classList.add("hide");
   timer.classList.add("timer");
-  shuffledQuestions = questions.slice(0, 15).sort(() => Math.random() - 0.5); // Pick 15 random questions
+  shuffledQuestions = questions.slice(0, 5).sort(() => Math.random() - 0.5); // Pick 15 random questions
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
@@ -113,6 +113,7 @@ function selectAnswer(e) {
 }
 
 function endGame() {
+  localStorage.setItem("mostRecentScore", JSON.stringify(score));
   startButton.innerText = "Try Again?";
   startButton.classList.remove("hide");
   nextButton.classList.add("hide");

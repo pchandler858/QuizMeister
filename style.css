@@ -44,6 +44,16 @@ body.wrong {
   transform: translate(-50%, -50%);
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .question-container {
   position: absolute;
   top: 50%;
@@ -53,6 +63,14 @@ body.wrong {
 .question-count {
   padding: 20px 0;
   font-size: 0.75rem;
+}
+
+.home-btn {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 9px;
+  width: 18rem;
 }
 
 .btn-grid {
@@ -74,6 +92,15 @@ body.wrong {
 
 .btn:hover {
   border-color: #000;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btn[disabled]:hover {
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .btn.correct {
@@ -136,4 +163,24 @@ nav a {
 .score {
   padding: 50px;
   font-size: 2rem;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin-bottom: 1rem;
+  width: 18rem;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+input::placeholder {
+  color: #aaa;
 }
