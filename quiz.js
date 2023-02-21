@@ -117,13 +117,14 @@ function endGame() {
   startButton.innerText = "Try Again?";
   startButton.classList.remove("hide");
   nextButton.classList.add("hide");
-  scoreContainerElement.classList.remove("hide");
+  // scoreContainerElement.classList.remove("hide");
   questionContainerElement.classList.add("hide");
   // Calculate and display the users score as X / Y and %
-  const totalQuestions = shuffledQuestions.length;
-  const scorePercentage = Math.round((score / totalQuestions) * 100);
-  scoreElement.innerText = `${score} / ${totalQuestions} (${scorePercentage}%)`;
+  // const totalQuestions = shuffledQuestions.length;
+  // const scorePercentage = Math.round((score / totalQuestions) * 100);
+  // scoreElement.innerText = `${score} / ${totalQuestions} (${scorePercentage}%)`;
   clearStatusClass(document.body);
+  window.location.href = "end.html"; //navigate to score screen
 }
 
 function setStatusClass(element, correct) {

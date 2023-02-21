@@ -71,6 +71,7 @@ body.wrong {
   padding: 10px 20px;
   margin: 9px;
   width: 18rem;
+  text-align: center;
 }
 
 .btn-grid {
@@ -88,6 +89,7 @@ body.wrong {
   padding: 5px 10px;
   color: #fff;
   outline: none;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -184,3 +186,23 @@ input {
 input::placeholder {
   color: #aaa;
 }
+
+/*=============================================
+=            High Score Page            =
+=============================================*/
+
+#highScoresList {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.high-score {
+  font: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+.high-score:hover {
+  transform: scale(1.025);
+}
+
+/*=====  End of High Score Page  ======*/

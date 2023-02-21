@@ -23,19 +23,16 @@
       src="https://kit.fontawesome.com/86156a3e2b.js"
       crossorigin="anonymous"
     ></script>
-    <title>QuizMeister</title>
+    <title>High Scores</title>
   </head>
-
   <body>
     <div class="container">
-      <div id="home" class="flex-center flex-column">
-        <h1>QuizMeister Web Development Quiz</h1>
-        <button id="takeQuiz-btn" class="home-btn btn">Take Quiz</button>
-        <button id="highScores-btn" class="home-btn btn">
-          View High Scores
-        </button>
+      <div id="highScores" class="flex-center flex-column">
+        <h1 id="finalScores">Top 5 High Scores!</h1>
+        <ul id="highScoresList"></ul>
+        <a href="/" class="btn home-btn">Go Home</a>
       </div>
     </div>
-    <script src="home.js"></script>
+    <script src="highScores.js"></script>
   </body>
 </html>
