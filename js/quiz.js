@@ -181,21 +181,21 @@ const questions = [
     ],
   },
   {
-    question: "What is a responsive website?",
+    question: "What is the difference between HTML and XHTML?",
     answers: [
-      { text: "A website that loads quickly", correct: false },
       {
-        text: "A website that is optimized for search engines",
+        text: "HTML is a markup language, while XHTML is a programming language",
         correct: false,
       },
       {
-        text: "A website that adapts to different screen sizes",
+        text: "XHTML is a stricter and cleaner version of HTML that follows XML syntax rules",
         correct: true,
       },
       {
-        text: "A website that is accessible to people with disabilities",
+        text: "HTML is used for front-end development, while XHTML is used for back-end development",
         correct: false,
       },
+      { text: "There is no difference between HTML and XHTML", correct: false },
     ],
   },
   {
