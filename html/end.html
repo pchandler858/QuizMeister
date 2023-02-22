@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link
       rel="shortcut icon"
       href="assets/icons8-quiz-64.png"
@@ -23,17 +23,33 @@
       src="https://kit.fontawesome.com/86156a3e2b.js"
       crossorigin="anonymous"
     ></script>
-    <title>High Scores</title>
+    <title>QuizMeister</title>
   </head>
   <body>
     <div class="container">
-      <div id="highScores" class="flex-center flex-column">
-        <h1 id="finalScores">Top 5 High Scores!</h1>
-        <ul id="highScoresList"></ul>
+      <div id="end" class="flex-center flex-column">
+        <h1 id="finalScore"></h1>
+        <form action="">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Your Name"
+          />
+          <button
+            type="submit"
+            id="saveScore-btn"
+            class="btn home-btn"
+            onclick="saveHighScore(event)"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+        <button id="start-btn" class="home-btn btn">Try Again</button>
         <button id="home-btn" class="home-btn btn">Go Home</button>
-        <!-- <a href="index.html" class="btn home-btn">Go Home</a> -->
       </div>
     </div>
-    <script src="highScores.js"></script>
+    <script src="/js/end.js"></script>
   </body>
 </html>

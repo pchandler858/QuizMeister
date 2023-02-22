@@ -155,9 +155,9 @@ nav a {
 
 .timer {
   display: inline-block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   background-color: #f1c40f;
   color: white;
 }
@@ -185,6 +185,11 @@ input {
 
 input::placeholder {
   color: #aaa;
+}
+
+.nav {
+  font-size: 2rem;
+  padding: 5px;
 }
 
 /*=============================================
