@@ -2,29 +2,41 @@
 
 ### [Click to view live page](https://pchandler858.github.io/My-Portfolio/)
 
-## The Task
+## How to Use the App
 
-In this Challenge i buult a timed coding quiz with multiple-choice questions. This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code.
+1.  Click the "Start" button to begin the quiz.
+2.  You will have 75 seconds to answer 15 multiple-choice questions.
+3.  Select an answer by clicking on one of the provided choices.
+4.  After selecting an answer, click the "Next" button to proceed to the next question.
+5.  If you answer a question incorrectly, 10 seconds will be deducted from your remaining time.
+6.  The quiz will end after you have answered all 15 questions or the timer runs out.
+7.  Once the quiz is completed, your score will be displayed.
+8.  Click the "Try Again?" button to start the quiz over.
 
-## Challenge User Story
+## Code Description
 
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+The app is built using JavaScript, and it has the following functions:
 
-## Challenge Acceptance Criteria
+- `startGame()` - This function starts the quiz and sets up the game by setting the initial score, time limit, selecting 15 random questions, and calling the `setNextQuestion()` function.
+- `setNextQuestion()` - This function displays the next question in the quiz by resetting the state, and calling the `showQuestion()` function with the next question.
+- `showQuestion(question)` - This function displays the current question and its answer choices by creating buttons with the answer choices and adding event listeners to them.
+- `resetState()` - This function resets the state of the quiz by clearing any status classes, hiding the score container, and removing all answer buttons.
+- `selectAnswer(e)` - This function checks if the selected answer is correct, updates the score or reduces time, sets the status class of the selected answer button and disables all other buttons. It also displays the "Next" button to proceed to the next question or displays a message and calls the `endGame()` function if it is the last question or the timer has run out.
+- `setStatusClass(element, correct)` - This function sets the status class of an element depending on whether the answer is correct or not.
+- `clearStatusClass(element)` - This function removes any existing status class from an element.
+- `endGame()` - This function stops the timer, stores the score in local storage, and navigates to the score screen.
+- `updateTimer()` - This function updates the timer and checks if the timer has run out. If it has run out, it calls the `endGame()` function.
+- `stopTimer()` - This function stops the timer by clearing the intervalId.
 
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Demonstration
 
