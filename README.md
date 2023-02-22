@@ -1,6 +1,6 @@
 # QuizMeister
 
-### [Click to view live page](https://pchandler858.github.io/My-Portfolio/)
+### [Click to view live page](https://pchandler858.github.io/QuizMeister/)
 
 ## How to Use the App
 
