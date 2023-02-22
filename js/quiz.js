@@ -1,49 +1,30 @@
-const timer = document.getElementById("timer");
 const startButton = document.getElementById("start-btn");
-const warning = document.getElementById("warning");
 const nextButton = document.getElementById("next-btn");
-const questionContainerElement = document.getElementById("question-container");
-const questionElement = document.getElementById("question");
 const countElement = document.getElementById("question-count");
-const scoreContainerElement = document.getElementById("score-container");
+const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
+const scoreContainerElement = document.getElementById("score-container");
+const warning = document.getElementById("warning");
+const timer = document.getElementById("timer");
+const questionContainerElement = document.getElementById("question-container");
 const scoreElement = document.getElementById("score");
-let shuffledQuestions, currentQuestionIndex;
-// JavaScript code for the countdown timer
+
+let shuffledQuestions;
+let currentQuestionIndex;
 let timeLeft;
 let intervalId;
-let score = 0;
+let score;
 
-startButton.addEventListener("click", () => {
-  timeLeft = 150; // Time limit: 10 seconds per question. 15 Questions.
-  startGame();
-  clearInterval(intervalId); // clear the previous interval
-  intervalId = setInterval(updateTimer, 1000); // set a new interval
-});
+startButton.addEventListener("click", startGame);
+
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
 
-function updateTimer() {
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft % 60;
-  timer.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  timeLeft--;
-  if (currentQuestionIndex === shuffledQuestions.length - 1) {
-    clearInterval(intervalId);
-  } else if (timeLeft < -1) {
-    clearInterval(intervalId);
-    timer.textContent = "0:00";
-    alert(`Time's Up!!!!`);
-    setTimeout(() => {
-      endGame();
-    }, 300); // Delay endGame() by 0.3 seconds so that the score does not populate right away
-  }
-}
-
 function startGame() {
   score = 0;
+  timeLeft = 20; // Time limit: 10 seconds per question. 15 Questions.
   startButton.classList.add("hide");
   warning.classList.add("hide");
   timer.classList.add("timer");
@@ -51,6 +32,8 @@ function startGame() {
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
+  stopTimer();
+  intervalId = setInterval(updateTimer, 1000); // set a new interval
 }
 
 function setNextQuestion() {
@@ -96,9 +79,8 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach((button) => {
     button.disabled = true;
     if (button === selectedButton) {
-      button.classList.add("selected-answer"); // add shadow to selected answer
+      button.classList.add("selected-answer");
     }
-
     setStatusClass(button, button.dataset.correct);
   });
   nextButton.classList.remove("hide");
@@ -117,17 +99,33 @@ function endGame() {
   startButton.innerText = "Try Again?";
   startButton.classList.remove("hide");
   nextButton.classList.add("hide");
-  // scoreContainerElement.classList.remove("hide");
   questionContainerElement.classList.add("hide");
-  // Calculate and display the users score as X / Y and %
-  // const totalQuestions = shuffledQuestions.length;
-  // const scorePercentage = Math.round((score / totalQuestions) * 100);
-  // scoreElement.innerText = `${score} / ${totalQuestions} (${scorePercentage}%)`;
   clearStatusClass(document.body);
   window.location.href = "end.html"; //navigate to score screen
   setTimeout(function () {
     location.reload();
   }, 1000);
+}
+
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timer.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  timeLeft--;
+  if (currentQuestionIndex === shuffledQuestions.length - 1) {
+    stopTimer();
+  } else if (timeLeft < -1) {
+    stopTimer();
+    timer.textContent = "0:00";
+    alert(`Time's Up!!!!`);
+    setTimeout(() => {
+      endGame();
+    }, 300); // Delay endGame() by 0.3 seconds so that the score does not populate right away
+  }
+}
+
+function stopTimer() {
+  clearInterval(intervalId);
 }
 
 function setStatusClass(element, correct) {
